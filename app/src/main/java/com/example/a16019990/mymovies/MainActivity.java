@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getBaseContext(), MovieDetails.class);
                 Movie movie = alMovies.get(position);
-                intent.putExtra("movieIdPos", position);
-                intent.putExtra("MovieObject", movie.toString());
+                intent.putExtra("movie", movie);
                 startActivity(intent);
             }
         });

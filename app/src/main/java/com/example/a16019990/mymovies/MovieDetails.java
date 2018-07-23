@@ -37,24 +37,18 @@ public class MovieDetails extends AppCompatActivity {
         rbRating = findViewById(R.id.ratingBar);
 
         Intent intentReceived = getIntent();
-        moviePos = intentReceived.getIntExtra("movieIdPos", 0);
-        String movieObject = intentReceived.getStringExtra("MovieObject");
+        Movie movieReal = (Movie) intentReceived.getSerializableExtra("movie");
 
-        String[] movieArr = movieObject.split(",");
-        Calendar date = Calendar.getInstance();
-        date.set(Integer.parseInt(movieArr[4]),Integer.parseInt(movieArr[5]),Integer.parseInt(movieArr[6]));
-        Movie movie = new Movie(movieArr[0], movieArr[1], movieArr[2], movieArr[3], date, movieArr[7], movieArr[8],Float.parseFloat(movieArr[9]));
-
-        String rating = movie.getRated();
+        String rating = movieReal.getRated();
         String ratingID = "rating_" + rating;
         int drawableResourceId = this.getResources().getIdentifier(ratingID, "drawable", this.getPackageName());
         ivRating.setImageResource(drawableResourceId);
-        tvTitle.setText(movie.getTitle());
-        tvYear.setText(movie.getYear() + " - ");
-        tvGenre.setText(movie.getGenre());
-        tvDescription.setText(movie.getDescription());
-        tvWatchedOn.setText("Watched on: " + movie.getWatchedOnString());
-        tvInTheather.setText("In Theater: " + movie.getIn_theather());
-        rbRating.setRating(movie.getRating());
+        tvTitle.setText(movieReal.getTitle());
+        tvYear.setText(movieReal.getYear() + " - ");
+        tvGenre.setText(movieReal.getGenre());
+        tvDescription.setText(movieReal.getDescription());
+        tvWatchedOn.setText("Watched on: " + movieReal.getWatchedOnString());
+        tvInTheather.setText("In Theater: " + movieReal.getIn_theather());
+        rbRating.setRating(movieReal.getRating());
     }
 }
